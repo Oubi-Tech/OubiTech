@@ -824,8 +824,8 @@ const Stats = memo(({ content, darkMode }) => (
    Services (old version restored)
    ========================= */
 const Services = memo(({ content, onBook }) => (
-  <AnimateSection delay={0.05}>
-    <section id="section-2" className="py-20 px-4 text-center">
+  <AnimateSection>
+    <section id="section-2" className="py-10 px-4 text-center">
       <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
         {content.services.title}
       </h3>
@@ -1026,7 +1026,7 @@ const Team = memo(({ darkMode, language }) => {
           {team.map((m, i) => (
             <motion.div
               key={i}
-              className={`p-8 rounded-3xl border-2 shadow-md ${
+              className={`p-4 rounded-3xl border-2 shadow-md ${
                 darkMode
                   ? "bg-gray-800/50 border-purple-500/20"
                   : "bg-white border-purple-500/10"
