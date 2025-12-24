@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Moon, Sun, Menu, X, Sparkles } from "lucide-react";
+import { Logo } from "../../assets/images";
 
 const Navbar = memo(
   ({
@@ -51,8 +52,13 @@ const Navbar = memo(
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
+            {/* <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
               <Sparkles className="w-6 h-6 text-white" />
+              <img src={Logo} alt="Logo Image" className="w-10 h-10 rounded-full" />
+            </div> */}
+            <div className="w-17 h-17 rounded-full bg-gradient-to-br flex items-center justify-center shadow-lg">
+              {/* <Sparkles className="w-6 h-6 text-white" /> */}
+              <img src={Logo} alt="Logo Image" className="w-16 h-16 rounded-full" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Oubi tech
