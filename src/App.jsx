@@ -824,8 +824,8 @@ const Stats = memo(({ content, darkMode }) => (
    Services (old version restored)
    ========================= */
 const Services = memo(({ content, onBook }) => (
-  <AnimateSection>
-    <section id="section-2" className="py-10 px-4 text-center">
+  <AnimateSection delay={0.05}>
+    <section id="section-2" className="py-20 px-4 text-center">
       <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
         {content.services.title}
       </h3>
@@ -1026,7 +1026,7 @@ const Team = memo(({ darkMode, language }) => {
           {team.map((m, i) => (
             <motion.div
               key={i}
-              className={`p-4 rounded-3xl border-2 shadow-md ${
+              className={`p-8 rounded-3xl border-2 shadow-md ${
                 darkMode
                   ? "bg-gray-800/50 border-purple-500/20"
                   : "bg-white border-purple-500/10"
@@ -1187,31 +1187,26 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState("ar");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [bookOpen, setBookOpen] = useState(false);
 
+  const scrolled = useScrollPosition(50);
   const content = translations[language];
   const isRTL = language === "ar";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
+    const root = document.documentElement;
+    darkMode ? root.classList.add("dark") : root.classList.remove("dark");
   }, [darkMode]);
 
-  const handleBookOpen = useCallback(() => setBookOpen(true), []);
-  const handleBookClose = useCallback(() => setBookOpen(false), []);
+  const openBook = useCallback(() => setBookOpen(true), []);
+  const closeBook = useCallback(() => setBookOpen(false), []);
 
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className={`${
-        darkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-900"
-      } transition-colors duration-300`}
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "bg-gray-950 text-white" : "bg-white text-gray-900"
+      }`}
     >
       <Navbar
         darkMode={darkMode}
@@ -1222,24 +1217,18 @@ export default function App() {
         setMenuOpen={setMenuOpen}
         content={content}
         scrolled={scrolled}
-        onBook={handleBookOpen}
+        onBook={openBook}
       />
 
-      <BookCallDrawer
-        open={bookOpen}
-        onClose={handleBookClose}
-        language={language}
-      />
+      <BookCallDrawer open={bookOpen} onClose={closeBook} language={language} />
 
-      <Hero content={content} darkMode={darkMode} onBook={handleBookOpen} />
+      <Hero content={content} onBook={openBook} />
       <Values content={content} darkMode={darkMode} />
       <Stats content={content} darkMode={darkMode} />
-      <Services content={content} onBook={handleBookOpen} />
+      <Services content={content} onBook={openBook} darkMode={darkMode} />
       <Process content={content} darkMode={darkMode} />
-      {/* <Portfolio darkMode={darkMode} language={language} /> */}
-      <Team darkMode={darkMode} language={language} />
-      {/* <Testimonials darkMode={darkMode} language={language} /> */}
-      <CTA content={content} onBook={handleBookOpen} />
+      <Team language={language} darkMode={darkMode} />
+      <CTA content={content} onBook={openBook} />
       <Footer language={language} content={content} />
     </div>
   );
