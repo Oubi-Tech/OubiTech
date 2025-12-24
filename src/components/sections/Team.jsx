@@ -9,7 +9,7 @@ const Team = memo(({ darkMode, language }) => {
           {
             avatar: "🧑‍💻",
             name: "مصعب",
-            role: "قائد الفريق ومهندس موبايل",
+            role: "قائد الفريق ومهندس تطبيقات",
             quote: "نقود الفريق لنقدّم أفضل نسخة من منتجك.",
           },
           {
@@ -35,7 +35,7 @@ const Team = memo(({ darkMode, language }) => {
           {
             avatar: "🚀",
             name: "Musab",
-            role: "Team Lead & Mobile Developer",
+            role: "Team Lead & Mobile Engineer",
             quote: "We ship products we’re proud of.",
           },
           {
