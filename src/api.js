@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://oubi-tech-back.vercel.app';
+const BASE_URL = 'http://localhost:3000';
 
 
 export default async function api(endpoint, requestBody) {

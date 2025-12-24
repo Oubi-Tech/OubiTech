@@ -2,31 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ===== DARK GLOW SYSTEM ===== */
+.dark {
+  --glow-primary: 168 85 247;
 }
 
 @layer utilities {
-  .animate-fadeIn {
-    animation: fadeIn 1s ease-in-out;
+  .glow-card {
+    box-shadow: 0 0 0 1px rgba(var(--glow-primary), 0.25),
+      0 0 40px rgba(var(--glow-primary), 0.35),
+      inset 0 0 20px rgba(var(--glow-primary), 0.15);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .glow-hover:hover {
+    box-shadow: 0 0 0 1px rgba(var(--glow-primary), 0.45),
+      0 0 70px rgba(var(--glow-primary), 0.65),
+      inset 0 0 30px rgba(var(--glow-primary), 0.25);
+    transform: translateY(-6px);
   }
 }
